@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <script>
+    // using buttons
+    function calculater(operation) {
+      if (operation == "add") {
+        let sum = parseInt(input1.value) + parseInt(input2.value);
+        document.write(
+          `The sum of ${input1.value} and ${input2.value} is ${sum}`,
+        );
+      } else if (operation == "subtract") {
+        let sum = parseInt(input1.value) - parseInt(input2.value);
+        document.write(
+          `The subtraction of ${input1.value} and ${input2.value} is ${sum}`,
+        );
+      } else if (operation == "multiply") {
+        let sum = parseInt(input1.value) * parseInt(input2.value);
+        document.write(
+          `The multiplication of ${input1.value} and ${input2.value} is ${sum}`,
+        );
+      } else if (operation == "divide") {
+        let sum = parseInt(input1.value) / parseInt(input2.value);
+        document.write(
+          `The divition of ${input1.value} and ${input2.value} is ${sum}`,
+        );
+      } else {
+        // this is never run.......
+        document.write(`Invalid input`);
+      }
+    }
+
+    // using radio button
+    function calculateRadio() {
+      const selectedRadio = document.querySelector(
+        'input[name="operation"]:checked',
+      );
+      const operation = selectedRadio.value;
+
+      const number1 = inputrad1.value;
+      const number2 = inputrad2.value;
+
+      if (operation == "add") {
+        let sum = parseInt(number1) + parseInt(number2);
+        document.write(`The sum of ${number1} and ${number2} is ${sum}`);
+      } else if (operation == "subtract") {
+        let sum = parseInt(number1) - parseInt(number2);
+        document.write(
+          `The subtraction of ${number1} and ${number2} is ${sum}`,
+        );
+      } else if (operation == "multiply") {
+        let sum = parseInt(number1) * parseInt(number2);
+        document.write(
+          `The multiplication of ${number1} and ${number2} is ${sum}`,
+        );
+      } else if (operation == "divide") {
+        let sum = parseInt(number1) / parseInt(number2);
+        document.write(`The divition of ${number1} and ${number2} is ${sum}`);
+      } else {
+        // this is never run.......
+        document.write(`Invalid input`);
+      }
+    }
+
+    //using dropdown
+    function calculateDropDown(operation) {
+      const number1 = inputdd1.value;
+      const number2 = inputdd2.value;
+
+      if (operation == "add") {
+        let sum = parseInt(number1) + parseInt(number2);
+        document.write(`The sum of ${number1} and ${number2} is ${sum}`);
+      } else if (operation == "subtract") {
+        let sum = parseInt(number1) - parseInt(number2);
+        document.write(
+          `The subtraction of ${number1} and ${number2} is ${sum}`,
+        );
+      } else if (operation == "multiply") {
+        let sum = parseInt(number1) * parseInt(number2);
+        document.write(
+          `The multiplication of ${number1} and ${number2} is ${sum}`,
+        );
+      } else if (operation == "divide") {
+        let sum = parseInt(number1) / parseInt(number2);
+        document.write(`The divition of ${number1} and ${number2} is ${sum}`);
+      } else {
+        // this is never run.......
+        document.write(`Invalid input`);
+      }
+    }
+  </script>
+  <body>
+    <div class="calculators">
+      <div class="calbutton">
+        <h1 class="">Calculator Using Simple Buttons</h1>
+        <form>
+          <label for="input1">Enter first number:</label>
+          <input type="number" id="input1" name="input1" />
+          <br /><br />
+          <label for="input2">Enter second number:</label>
+          <input type="number" id="input2" name="input2" />
+          <br /><br />
+          <button type="button" onclick="calculater('add')">Add</button>
+          <button type="button" onclick="calculater('subtract')">
+            Subtract
+          </button>
+          <button type="button" onclick="calculater('multiply')">
+            Multiply
+          </button>
+          <button type="button" onclick="calculater('divide')">Divide</button>
+        </form>
+      </div>
+      <div class="calradio">
+        <h1 class="">Calculator Using Radio Buttons</h1>
+        <form>
+          <label for="input1">Enter first number:</label>
+          <input type="number" id="inputrad1" name="inputrad1" />
+          <br /><br />
+          <label for="input2">Enter second number:</label>
+          <input type="number" id="inputrad2" name="inputrad2" />
+          <br /><br />
+          <div class="radiobuttons">
+            <input type="radio" id="add" name="operation" value="add" />
+            <label for="add">Add</label><br />
+            <input
+              type="radio"
+              id="subtract"
+              name="operation"
+              value="subtract"
+            />
+            <label for="subtract">Subtract</label><br />
+            <input
+              type="radio"
+              id="multiply"
+              name="operation"
+              value="multiply"
+            />
+            <label for="multiply">Multiply</label><br />
+            <input type="radio" id="divide" name="operation" value="divide" />
+            <label for="divide">Divide</label><br />
+          </div>
+          <button type="button" onclick="calculateRadio()">Calculate</button>
+        </form>
+      </div>
+      <div class="caldropdown">
+        <h1 class="">Calculator Using Drop Down</h1>
+        <form>
+          <label for="input1">Enter first number:</label>
+          <input type="number" id="inputdd1" name="inputdd1" />
+          <br /><br />
+          <label for="input2">Enter second number:</label>
+          <input type="number" id="inputdd2" name="inputdd2" />
+          <br /><br />
+          <label for="operation">Select operation:</label>
+          <select id="operation" name="operation">
+            <option value="add">Add</option>
+            <option value="subtract">Subtract</option>
+            <option value="multiply">Multiply</option>
+            <option value="divide">Divide</option>
+          </select>
+          <br /><br />
+          <button type="button" onclick="calculateDropDown(operation.value)">
+            Calculate
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

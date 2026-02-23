@@ -1,0 +1,79 @@
+
+
+.calbutton, .calradio, .caldropdown {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    margin: 32px auto;
+    padding: 32px 24px 24px 24px;
+    max-width: 240px;
+    width: 70%;
+    height: fit-content;
+    transition: box-shadow 0.2s;
+}
+
+h1 {
+    color: #f76b1c;
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 1.6rem;
+}
+
+label {
+    font-weight: 500;
+    color: #333;
+}
+.calculators{
+    display: flex;
+}
+input[type="number"] {
+    width: 90%;
+    padding: 8px 12px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #fda085;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+}
+
+
+button {
+    background: linear-gradient(90deg, #fda085 0%, #f76b1c 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    margin: 8px 6px 0 0;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(253,160,133,0.12);
+    
+}
+
+.radiobuttons {
+    margin: 12px 0 18px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+}
+
+.radiobuttons label {
+    margin-right: 18px;
+    color: #f76b1c;
+    font-weight: 500;
+}
+
+select {
+    width: 95%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #fda085;
+    font-size: 1rem;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    outline: none;
+    transition: border 0.2s;
+}
+
