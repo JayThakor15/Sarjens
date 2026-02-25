@@ -1,0 +1,86 @@
+body{
+    background: #EEAECA;
+background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+/* Custom radio button styling */
+.gst input[type="radio"] {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #e277a6;
+    border-radius: 50%;
+    background: #fff;
+    margin-right: 8px;
+    
+}
+.gst input[type="radio"]:checked {
+    border-color: #a85d8e;
+    background: #e277a6;
+}
+
+.gst label {
+    font-size: 16px;
+    color: #a85d8e;
+    margin-right: 18px;
+    font-family: "Courgette", cursive;
+
+}
+
+.main{
+    background-color: white;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+h1{
+    text-align: center;
+    padding-top: 20px;
+    color: #e277a6;
+    position: relative;
+    left: 20%;
+    right: 50%;
+     font-family: "Courgette", cursive;
+}
+label{
+    font-size: 18px;
+    color: #e277a6;
+    margin-bottom: 10px;
+         font-family: "Courgette", cursive;
+}
+.container{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    height: 100%;
+}
+input{
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+}
+button{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    color: #e277a6;
+    font-weight: bold;
+    border: 1px solid #e277a6;
+}
+select{
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+}
+p{
+    color: rgb(145, 53, 53);
+    font-weight: bold;
+         font-family: "Courgette", cursive;
+}
