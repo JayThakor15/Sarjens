@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <h1 class="RBCH">Random Background Color on Reload</h1>
+    <script>
+      const colors = [
+        "#FF5733",
+        "#33FF57",
+        "#3357FF",
+        "#F39C12",
+        "#8E44AD",
+        "#1ABC9C",
+        "#E74C3C",
+        "#2ECC71",
+        "#3498DB",
+        "#9B59B6",
+        "#F1C40F",
+        "#16A085",
+        "#D35400",
+        "#7F8C8D",
+        "#C0392B",
+        "#27AE60",
+        "#2980B9",
+        "#8E44AD",
+        "#2C3E50",
+        "#FD79A8",
+      ];
+      window.onload = randomBackgroundColor();
+      function randomBackgroundColor() {
+        let body = document.getElementsByTagName("body")[0];
+
+        let index = Math.floor(Math.random() * 21);
+        body.style = `background-color: ${colors[index]}`;
+      }
+    </script>
+  </body>
+</html>
