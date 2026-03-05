@@ -1,0 +1,110 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #87a4c2;
+      font-family: Arial, sans-serif;
+    }
+
+    .timer {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+    }
+
+    .count {
+      margin-bottom: 10px;
+    }
+
+    .time {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #333;
+    }
+
+    button {
+      padding: 8px 14px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      
+    }
+
+    #start {
+      background-color: green;
+      color: white;
+    }
+
+    #pause {
+      background-color: orange;
+      color: white;
+    }
+
+    #stop {
+      background-color: red;
+      color: white;
+    }
+  </style>
+  <body>
+    <div class="timer">
+      <h1 class="count">Timer</h1>
+      <p class="time" id="time"></p>
+      <button type="button" id="start" onclick="startTimer()">Start</button>
+      <button type="button" id="stop" onclick="stopTimer()">Stop</button>
+      <button type="button" id="pause" onclick="pauseTiimer()">Pause</button>
+    </div>
+
+    <script>
+      let timer = 0;
+      let isRunning = false;
+      let internvalId;
+      function timerfunc() {
+        isRunning = true;
+        internvalId = setInterval(() => {
+          if (timer == 10) {
+            clearInterval(internval);
+            return;
+          } else {
+            timer++;
+            let time = document.getElementById("time");
+            time.innerText = timer;
+          }
+        }, 1000);
+      }
+
+      function startTimer() {
+        if (!isRunning) {
+          timerfunc();
+        }
+      }
+      function pauseTiimer() {
+        clearInterval(internvalId);
+        isRunning = false;
+      }
+      function stopTimer() {
+        clearInterval(internvalId);
+        timer = 0;
+        let time = document.getElementById("time");
+        time.innerText = timer;
+      }
+    </script>
+  </body>
+</html>
