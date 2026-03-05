@@ -1,0 +1,184 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <script>
+    window.onload = function () {
+      showTasks();
+    };
+    let isEditing = false;
+    let editTaskId = 0;
+    function addTask(e) {
+      e.preventDefault();
+      var taskName = document.getElementById("textTask").value;
+      var tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+      if (isEditing) {
+        tasks[editTaskId] = taskName;
+        isEditing = false;
+        editIndex = null;
+      } else {
+        tasks.push(taskName);
+      }
+      tasks = JSON.stringify(tasks);
+      localStorage.setItem("tasks", tasks);
+      taskName.value = "";
+      showTasks();
+    }
+    function showTasks() {
+      var tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      console.log(tasks);
+
+      var main = document.getElementsByClassName("tasklist")[0];
+      var innerCode = "";
+
+      tasks.map((t, index) => {
+        innerCode += `
+        <div class="task-row" key=${index}>
+          <div class="task-info">
+            <p>${t}</p>
+          </div>
+          <div class="task-actions">
+            <button id="donebtn" onclick="deleteTask(${index})">Done</button>
+            <button id="editbtn" onclick="editTask(${index})">Edit</button>
+          </div>
+        </div>
+        <br/>
+        `;
+      });
+      main.innerHTML = innerCode;
+    }
+    function deleteTask(index) {
+      var tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      var updatedTask = tasks.filter((_, i) => i !== index);
+
+      localStorage.setItem("tasks", JSON.stringify(updatedTask));
+      showTasks();
+    }
+
+    function editTask(index) {
+      isEditing = true;
+      var tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      var editableTask = tasks.find((_, i) => i == index);
+      document.getElementById("textTask").value = editableTask;
+      editTaskId = index;
+      addTask();
+      showTasks();
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      padding-top: 40px;
+    }
+
+    body > div {
+      width: 500px;
+      background: #ffffff;
+      padding: 20px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    #donebtn {
+      background-color: rgba(19, 153, 15, 0.678);
+    }
+    #editbtn {
+      background-color: rgba(255, 0, 0, 0.678);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: white;
+      font-size: 14px;
+    }
+
+    .tasklist {
+      margin-top: 15px;
+    }
+
+    .task-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 5px;
+    }
+    .task-info {
+      display: flex;
+      gap: 10px;
+    }
+    .task-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tasklist p {
+      margin: 2px 8px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+  </style>
+  <body>
+    <div>
+      <h1>Todo Application</h1>
+      <hr />
+      <form class="todoform">
+        <label for="">Task</label>
+        <input
+          type="text"
+          name="texttask"
+          value=""
+          id="textTask"
+          placeholder="Enter your task"
+        />
+        <button type="submit" onclick="addTask(event)">Add task</button>
+      </form>
+
+      <hr />
+      <h1>Tasks</h1>
+      <div class="tasklist"></div>
+    </div>
+  </body>
+</html>
