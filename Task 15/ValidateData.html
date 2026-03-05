@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #eee;
+      }
+
+      .main {
+        width: 400px;
+        background: white;
+        padding: 20px;
+        margin: 50px auto;
+        border: 1px solid #ccc;
+      }
+
+      .inputdata {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: inline-block;
+        width: 130px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      select {
+        padding: 5px;
+        width: 200px;
+      }
+
+      button {
+        padding: 6px 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <form>
+        <div class="row">
+          <label>Enter Name:</label>
+          <input type="text" id="name" required value="" />
+        </div>
+
+        <div class="inputdata">
+          <label>Enter Mobile No:</label>
+          <input type="number" id="mobile" required value="" />
+        </div>
+
+        <div class="inputdata">
+          <label>Gender:</label>
+          <input
+            type="radio"
+            name="gender"
+            id="gender_male"
+            required
+            value="Male"
+          />
+          Male
+          <input
+            type="radio"
+            name="gender"
+            id="gender_female"
+            required
+            value="Female"
+          />
+          Female
+        </div>
+
+        <div class="inputdata">
+          <label>Hobby:</label>
+          <input
+            type="checkbox"
+            id="hobby_reading"
+            name="hobby"
+            value="Reading"
+          />
+          Reading
+          <input
+            type="checkbox"
+            id="hobby_dancing"
+            name="hobby"
+            value="Dancing"
+          />
+          Dancing
+          <input
+            type="checkbox"
+            id="hobby_singing"
+            name="hobby"
+            value="Singing"
+          />
+          Singing
+        </div>
+
+        <div class="inputdata">
+          <label>City:</label>
+          <select id="city" required>
+            <option>Select City</option>
+            <option>Ahmedabad</option>
+            <option>Mehonaaaaa</option>
+            <option>Rajkot</option>
+            <option>Vadodara</option>
+          </select>
+        </div>
+
+        <div class="inputdata">
+          <button onclick="validateData(event)">Submit Data</button>
+        </div>
+      </form>
+      <p id="error"></p>
+      <div class="submitedData"></div>
+    </div>
+    <script>
+      function validateData(e) {
+        e.preventDefault();
+        let name = document.getElementById("name").value;
+        let mobile = document.getElementById("mobile").value;
+        let gender = document.querySelector(
+          'input[name="gender"]:checked',
+        )?.value;
+        let hobbies = [];
+        document
+          .querySelectorAll('input[name="hobby"]:checked')
+          .forEach((h) => {
+            hobbies.push(h.value);
+          });
+        let city = document.getElementById("city").value;
+        let error = document.getElementById("error");
+        error.style = "color: red";
+
+        if (!name || name == null) {
+          error.innerText = "Name is required";
+        } else if (!mobile || mobile == null) {
+          error.innerText = "Mobile is required";
+        } else if (!gender || gender == null) {
+          error.innerText = "Gender is required";
+        } else if (!hobbies || hobbies.length == 0) {
+          error.innerText = "Hobby is required";
+        } else if (!city || city == "Select City") {
+          error.innerText = "City is required";
+        } else {
+          let nameP = document.createElement("p");
+          nameP.innerText = `Name is ${name}`;
+          let mobileP = document.createElement("p");
+          mobileP.innerText = `Mobile number is: ${mobile}`;
+          let genderP = document.createElement("p");
+          genderP.innerText = `Gender is: ${gender}`;
+          let hobbiesP = document.createElement("p");
+          hobbiesP.innerText = `Hobbies are ${hobbies}`;
+          let cityP = document.createElement("p");
+          cityP.innerText = `City is ${city}`;
+
+          let div = document.getElementsByClassName("submitedData")[0];
+          div.appendChild(nameP);
+          div.appendChild(mobileP);
+          div.appendChild(genderP);
+          div.appendChild(hobbiesP);
+          div.appendChild(cityP);
+        }
+      }
+    </script>
+  </body>
+</html>
