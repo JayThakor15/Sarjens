@@ -1,0 +1,80 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      height: 100vh;
+    "
+  >
+    <div style="display: flex; flex-direction: column; width: 300px" id="colrodiv">
+      <label for="R">R</label>
+      <input
+        type="range"
+        min="0"
+        max="255"
+        value="0"
+        id="R"
+        onchange="onHandleChange()"
+      />
+      <label for="G">G</label>
+      <input
+        type="range"
+        min="0"
+        max="255"
+        value="0"
+        id="G"
+        onchange="onHandleChange()"
+      />
+      <label for="B">B</label>
+      <input
+        type="range"
+        min="0"
+        max="255"
+        value="0"
+        id="B"
+        onchange="onHandleChange()"
+      />
+
+      <h1 class="" style="font-size: 14px" id="rgbvalue">RGB(0,0,0)</h1>
+    </div>
+    <script>
+      function onHandleChange() {
+        getRGBvalue();
+      }
+      function getRGBvalue() {
+        let R = document.getElementById("R").value;
+        let G = document.getElementById("G").value;
+        let B = document.getElementById("B").value;
+
+        let rgbvalue = document.getElementById("rgbvalue");
+        rgbvalue.innerText = `RGB(${R},${G},${B})`;
+        if (!document.getElementById("generateBttn")) {
+          let button = document.createElement("button");
+          button.innerText = "Generate Color";
+          button.onclick = () => {
+            generateBackgroundColor(R, G, B);
+          };
+          let div = document.querySelector("div");
+          button.id = "generateBttn";
+          div.appendChild(button);
+        }       
+      }
+      function generateBackgroundColor(R, G, B) {
+        let div = document.getElementById("colrodiv");
+        div.style = `background-color: rgb(${R},${G},${B})`;
+      }
+    </script>
+  </body>
+</html>
