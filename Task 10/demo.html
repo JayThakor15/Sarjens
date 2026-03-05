@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+
+      div {
+        text-align: center;
+        background: #1e293b;
+        padding: 40px 60px;
+        border-radius: 12px;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      #clock {
+        font-size: 48px;
+        margin: 10px 0;
+      }
+
+      #date {
+        font-size: 20px;
+
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Digital Clock</h1>
+      <h2 id="clock"></h2>
+      <h2 id="date"></h2>
+    </div>
+    <script>
+      function clock() {
+        let curreData = new Date();
+        let hours = curreData.getHours();
+        let minutes = curreData.getMinutes();
+        let seconds = curreData.getSeconds();
+
+        let day = curreData.getDate().toString();
+        let month = (curreData.getMonth() + 1).toString();
+        let year = curreData.getFullYear();
+
+        let Time = document.getElementById("clock");
+        let date = document.getElementById("date");
+        Time.innerText = "Time: " + hours + ":" + minutes + ":" + seconds;
+        date.innerText = "Date: " + day + ":" + month + ":" + year;
+      }
+      window.onload = () => {
+        clock();
+        setInterval(clock, 1000);
+      };
+    </script>
+  </body>
+</html>
