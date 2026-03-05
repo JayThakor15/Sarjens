@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f4f6f8;
+        font-family: Arial, sans-serif;
+      }
+
+      .otpcotainer {
+        background: white;
+        padding: 30px 40px;
+        border-radius: 10px;
+        text-align: center;
+        width: 300px;
+      }
+
+      h1 {
+        margin-bottom: 15px;
+      }
+
+      #otp {
+        font-size: 40px;
+
+        margin: 20px 0;
+        color: #333;
+      }
+
+      button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: white;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="otpcotainer">
+      <h1>Random OTP</h1>
+      <h2 id="otp"></h2>
+      <button type="button" onclick="newOTP()">Generate New OTP</button>
+    </div>
+    <script>
+      window.onload = newOTP();
+      function newOTP() {
+        let otpDisplay = document.getElementById("otp");
+        let otp = Math.floor(1000 + Math.random() * 9000);
+        otpDisplay.innerText = otp;
+      }
+    </script>
+  </body>
+</html>
