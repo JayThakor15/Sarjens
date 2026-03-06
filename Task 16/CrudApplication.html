@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Basic Details Form</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background: #f2f2f2;
+      }
+
+      .container {
+        width: 350px;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>User Details</h2>
+
+      <form>
+        <label>Name</label>
+        <input type="text" placeholder="Enter your name" id="name" />
+
+        <label>Phone</label>
+        <input type="tel" placeholder="Enter phone number" id="phone" />
+
+        <label>Address</label>
+        <textarea placeholder="Enter address" id="address"></textarea>
+
+        <label>City</label>
+        <input type="text" placeholder="Enter city" id="city" />
+
+        <button type="submit" onclick="addData(event)">Submit</button>
+      </form>
+    </div>
+    <p id="message" style="color: green"></p>
+    <a href="./ShowData.html"
+      ><button type="button" style="width: 100px">View Data</button></a
+    >
+    <script>
+      let isEditing = false;
+      let editingIndex;
+      let data = [];
+      function addData(e) {
+        e.preventDefault();
+        let name = document.getElementById("name").value;
+        let phone = document.getElementById("phone").value;
+        let address = document.getElementById("address").value;
+        let city = document.getElementById("city").value;
+
+        let allDataa = JSON.parse(localStorage.getItem("data") || "[]");
+
+        let oneData = {
+          name,
+          phone,
+          address,
+          city,
+        };
+        if (isEditing) {
+          allDataa[editingIndex] = oneData;
+          isEditing = false;
+          localStorage.setItem("data", JSON.stringify(allDataa));
+          document.getElementById("message").innerHTML =
+            "Data updated successfully";
+
+          document.getElementById("name").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("address").value = "";
+          document.getElementById("city").value = "";
+        } else {
+          allDataa.push(oneData);
+          localStorage.setItem("data", JSON.stringify(allDataa));
+          document.getElementById("message").innerHTML =
+            "Data added successfully";
+
+          document.getElementById("name").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("address").value = "";
+          document.getElementById("city").value = "";
+        }
+      }
+
+      window.onload = editData();
+      function editData() {
+        let editableIndex = JSON.parse(localStorage.getItem("Index") || null);
+
+        if (editableIndex != null) {
+          editingIndex = editableIndex;
+          let allData = JSON.parse(localStorage.getItem("data"));
+          console.log(addData);
+
+          document.getElementById("name").value = allData[editableIndex].name;
+          document.getElementById("phone").value = allData[editableIndex].phone;
+          document.getElementById("address").value =
+            allData[editableIndex].address;
+          document.getElementById("city").value = allData[editableIndex].city;
+          isEditing = true;
+          localStorage.removeItem("Index");
+        }
+      }
+    </script>
+  </body>
+</html>

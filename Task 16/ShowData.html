@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <style>
+    .showData {
+      width: 600px;
+      margin: 30px auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid #ccc;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background: #007bff;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    .action-btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .edit-btn {
+      background: #28a745;
+      color: white;
+    }
+
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+    }
+  </style>
+  <body>
+    <div class="showData">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <script>
+      let editableIndex;
+      window.onload = showData();
+      function showData() {
+        let allData = JSON.parse(localStorage.getItem("data")) || [];
+
+        let tableBody = document.getElementById("tableBody");
+
+        tableBody.innerHTML = "";
+
+        allData.forEach((item, index) => {
+          tableBody.innerHTML += `
+            <tr>
+              <td>${item.name}</td>
+              <td>${item.phone}</td>
+              <td>${item.address}</td>
+              <td>${item.city}</td>
+              <td>
+                <a href="./CrudApplication.html"><button class="action-btn edit-btn" onclick="editData(${index})">Edit</button></a>
+                <button class="action-btn delete-btn" onclick="deleteData(${index})">Delete</button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+
+      function editData(index) {
+        editableIndex = index;
+        localStorage.setItem("Index", JSON.stringify(editableIndex));
+      }
+
+      function deleteData(index) {
+        let allData = JSON.parse(localStorage.getItem("data"));
+        allData.splice(index, 1);
+        localStorage.setItem("data", JSON.stringify(allData));
+        showData();
+      }
+    </script>
+  </body>
+</html>
